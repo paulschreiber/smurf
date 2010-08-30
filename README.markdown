@@ -16,7 +16,7 @@ Smurf will work with most versions of Rails `2.3.x` and above; including Rails `
 
 ### JSmin
 
-It's really an adaptation of Uladzislau Latynski's [jsmin.rb](http://javascript.crockford.com/jsmin.rb) port of Douglas Crockford's [jsmin.c](http://javascript.crockford.com/jsmin.c) library.
+The Javascript is minified with the [Google Closure Compiler](http://code.google.com/p/closure-compiler/).
 
 ### Smurf CSS Compressor
 
