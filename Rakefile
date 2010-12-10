@@ -18,12 +18,12 @@ end
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "smurf"
+    gem.name = "ps-smurf"
     gem.summary = "Rails plugin to automatically minify JS and CSS when their bundles get cached"
     gem.description = "Rails plugin to automatically minify JS and CSS when their bundles get cached. Send in those patches!"
-    gem.email = "gus@thumblemonks.com"
-    gem.homepage = "http://github.com/thumblemonks/smurf"
-    gem.authors = ["Justin 'Gus' Knowlden"]
+    gem.email = "paulschreiber@gmail.com"
+    gem.homepage = "http://github.com/paulschreiber/smurf"
+    gem.authors = ["Justin 'Gus' Knowlden", "Nicolas Viennot", "Ryan Grove", "Paul Schreiber"]
     gem.add_development_dependency "riot"
   end
   Jeweler::GemcutterTasks.new

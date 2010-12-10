@@ -35,21 +35,40 @@
 # SOFTWARE.
 
 require 'stringio'
+require 'jsmin'
 
 module Smurf
   class Javascript
     def self.minifies?(paths) !paths.grep(%r[\.js(\?\d+)?$]).empty?; end
 
     def initialize(content)
-      @content = content
-      IO.popen("java -jar #{File.join(File.dirname(__FILE__), '..', 'closure-compiler', 'compiler.jar')}", "r+") do |p|
+      @content = nil
+      java_exists = %x[which java].present?
+      
+      if java_exists
+        @content = minify_with_closure_compiler(content)
+        Rails.logger.info "Closure Compiler failed" if @content.blank?
+      end
+      
+      if @content.blank?
+        Rails.logger.info "Closure Compiler not found" unless java_exists
+        @content = JSMin.minify(content)
+      end
+      
+      @content
+    end
+
+    def minified; @content end
+
+    def minify_with_closure_compiler(content)
+      jar_file = File.join(File.dirname(__FILE__), '..', 'closure-compiler', 'compiler.jar')
+      IO.popen("java -jar #{jar_file}", "r+") do |p|
         p.write content
         p.close_write
         content = p.read
       end
-      @content = content if $? == 0
+      content if $? == 0
     end
-
-    def minified; @content end
+    
   end
 end

@@ -2,7 +2,7 @@
 
 Smurf is a Rails plugin that does Javascript and CSS minification the way you would expect. See, with Rails `2.x` we got this cool new `:cache` option on `javascript_include_tag` and `stylesheet_link_tag`, but no option for minifying the cached file(s).
 
-Smurf ends that. Smurf - if installed and when caching is enabled for the environment - will nab the concatenated file content from Rails just before it saves it and minifies the content using either JSmin or a custom CSS compressor.
+Smurf ends that. Smurf - if installed and when caching is enabled for the environment - will nab the concatenated file content from Rails just before it saves it and minifies the content using either Google Closure Compiler, JSmin or a custom CSS compressor.
 
 Some cool things about Smurf, which also allude to the reasons I wrote it:
 
@@ -12,11 +12,12 @@ Some cool things about Smurf, which also allude to the reasons I wrote it:
 * Other than installing it, you don't need to do anything
 * It just gets out of your way
 
-Smurf will work with most versions of Rails `2.3.x` and above; including Rails `3.0.0.beta1`.
+Smurf will work with most versions of Rails `2.3.x` and above; including Rails `3.0.x`.
 
 ### JSmin
 
 The Javascript is minified with the [Google Closure Compiler](http://code.google.com/p/closure-compiler/).
+If the Closure Compiler fails, we fall back to JSMin (using Ryan Grove's Ruby port).
 
 ### Smurf CSS Compressor
 
@@ -66,6 +67,6 @@ If you want to play around with different versions, you'll need to update the Ge
 
 Author: Justin Knowlden <gus@thumblemonks.com>
 
-Contributions from: Lance Ivy, Scott White, Daniel Schierbeck
+Contributions from: Lance Ivy, Scott White, Daniel Schierbeck, Nicolas Viennot, Paul Schreiber
 
 See MIT-LICENSE for licensing information
